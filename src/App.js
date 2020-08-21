@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,7 +15,7 @@ function App() {
     color: "goldenrod",
     backgroundColor: "white"
   }
-  const goodFriend = ["Robiul Islam", "Shimul Cricketer", "Bishal Akash", "Raihan Uddin Police", "Moin Khan","Naimul Habib","Niamul Islam","Nasrin sultana Khusi Dadi"]
+  const goodFriend = ["Robiul Islam", "Shimul Cricketer", "Bishal Akash", "Raihan Uddin Police", "Moin Khan", "Naimul Habib", "Niamul Islam", "Nasrin sultana Khusi Dadi"]
   const products = [
     { name: "Adobe Photoshop", price: "$120", Rating: "5 star" },
     { name: "Adobe Illustrator", price: "$96", Rating: "4.5 star" },
@@ -25,30 +25,27 @@ function App() {
   ]
   const productName = products.map(productName => productName.name)
   const productRating = products.map(productRating => productRating.Rating)
-  
-  console.log(productName)
-  
 
-  
- 
- return (
+  console.log(productName)
+
+
+
+
+  return (
     <div className="App">
       <header className="App-header">
         <h1>Learning React</h1>
+        <Counter></Counter>
+        <User></User>
         <ul>
-          
-          {/* <li>{goodFriendName[0]}</li>
-          <li>{goodFriendName[1]}</li>
-          <li>{goodFriendName[2]}</li>
-          <li>{goodFriendName[3]}</li>
-          <li>{goodFriendName[4]}</li>
-          <li>{goodFriendName[5]}</li> */
-          
-          goodFriend.map(singleFriendName=> 
-            <li>{singleFriendName}</li>
-            
+
+          {
+
+            goodFriend.map(singleFriendName =>
+              <li>{singleFriendName}</li>
+
             )
-            
+
           }
           {
             productName.map(singleProductName => <li>{singleProductName}</li>)
@@ -70,10 +67,12 @@ function App() {
         <Person name="Atika Akter" id="495" character="The Helper"></Person>
 
         {
-          products.map( productName => <Product productName ={productName}></Product>)
+          products.map(productName => <Product productName={productName}></Product>)
         }
-        
-    </header>
+
+
+
+      </header>
     </div>
   );
 }
@@ -138,4 +137,39 @@ function Product(props) {
   )
 }
 
+function Counter() {
+  const [Count, setCount] = useState(100);
+
+  return (
+    <div>
+      <h1 id="count">Count: {Count} </h1>
+
+      <button id="increaseValue" onMouseMove={() => setCount(Count - 1)} style={{ padding: "10px", backgroundColor: "blue", color: "white" }}>Decrease</button> <br /> <br />
+      <button id="increaseValue" onMouseMove={() => setCount(Count + 1)} style={{ padding: "10px", backgroundColor: "blue", color: "white" }}>Increase</button>
+    </div>
+
+
+  )
+}
+
+function User() {
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(data => setUser(data))
+  },[])
+
+  return (
+    <div>
+      <h3>User Name: {user.length} </h3>
+      <ul>
+        {/* {user.map(user => <li>{user.email}</li>)} */}
+        {user.map(user => <li>{user.name}</li> )}
+      </ul>
+      
+      
+    </div>
+  )
+}
 export default App;
