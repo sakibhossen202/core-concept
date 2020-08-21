@@ -15,19 +15,48 @@ function App() {
     color: "goldenrod",
     backgroundColor: "white"
   }
-  const goodFriend = ["Robiul Islam", "Shimul", "Akash", "Raihan", "Moin"]
-  const products =[
-    {name:"Adobe Photoshop" ,price:"$120" ,Rating:"5 star"},
-    {name:"Adobe Illustrator", price:"$96" ,Rating:"4.5 star"},
-    {name:"Adobe Ebook Reader",price:"$5",Rating:"4.8 star"},
-    {name:"Adobe Designer" , price:"$65",Rating:"5 star"},
-    {name:"Adobe premiere Pro" , price:"$70",Rating:"4.7 star"}
+  const goodFriend = ["Robiul Islam", "Shimul Cricketer", "Bishal Akash", "Raihan Uddin Police", "Moin Khan","Naimul Habib","Niamul Islam","Nasrin sultana Khusi Dadi"]
+  const products = [
+    { name: "Adobe Photoshop", price: "$120", Rating: "5 star" },
+    { name: "Adobe Illustrator", price: "$96", Rating: "4.5 star" },
+    { name: "Adobe Ebook Reader", price: "$5", Rating: "4.8 star" },
+    { name: "Adobe Designer", price: "$65", Rating: "5 star" },
+    { name: "Adobe premiere Pro", price: "$70", Rating: "4.7 star" }
   ]
-  console.log(products[0].name)
-  return (
+  const productName = products.map(productName => productName.name)
+  const productRating = products.map(productRating => productRating.Rating)
+  
+  console.log(productName)
+  
+
+  
+ 
+ return (
     <div className="App">
       <header className="App-header">
         <h1>Learning React</h1>
+        <ul>
+          
+          {/* <li>{goodFriendName[0]}</li>
+          <li>{goodFriendName[1]}</li>
+          <li>{goodFriendName[2]}</li>
+          <li>{goodFriendName[3]}</li>
+          <li>{goodFriendName[4]}</li>
+          <li>{goodFriendName[5]}</li> */
+          
+          goodFriend.map(singleFriendName=> 
+            <li>{singleFriendName}</li>
+            
+            )
+            
+          }
+          {
+            productName.map(singleProductName => <li>{singleProductName}</li>)
+          }
+          {
+            productRating.map(productRating => <li>{productRating}</li>)
+          }
+        </ul>
 
         <Person name={goodFriend[0]} id="452" character="Honest & modest"></Person>
         <Person name="Bishal Akash" id="467" character="Not bad at all"></Person>
@@ -40,16 +69,11 @@ function App() {
         <Person name="Niamul Islam" id="408" character="The Great Dhoincha"></Person>
         <Person name="Atika Akter" id="495" character="The Helper"></Person>
 
-        <Product productName= {products[0]} ></Product>
-        <Product productName={products[1]} ></Product>
-        <Product productName={products[2]} ></Product>
-        <Product productName={products[3]} ></Product>
-        <Product productName={products[4]} ></Product>
-
-
-
-
-      </header>
+        {
+          products.map( productName => <Product productName ={productName}></Product>)
+        }
+        
+    </header>
     </div>
   );
 }
@@ -91,25 +115,25 @@ function Product(props) {
 
     , borderRadius: "8px"
   }
-  const btnStyle ={
-    padding:"10px",
-    borderRadius:"5px",
-    backgroundColor:"yellow"
-    
+  const btnStyle = {
+    padding: "10px",
+    borderRadius: "5px",
+    backgroundColor: "yellow"
+
   }
-  const {name,price,Rating} = props.productName;
+  const { name, price, Rating } = props.productName;
   return (
-    <div style = {productStyle}>
+    <div style={productStyle}>
       <p>Available on online Shop</p>
-     
+
       <h2>{name}</h2>
       <h3>{price}</h3>
       <p>{Rating}</p>
 
       <button style={btnStyle}>Buy Now</button>
-      
-      
-      
+
+
+
     </div>
   )
 }
